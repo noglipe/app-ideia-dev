@@ -13,6 +13,19 @@ function converter(numero) {
         window.setTimeout('removerClass()', 2000);
 
     }
+
+    const regex = /[a-zA-Z]/;
+    const regex2 = /[0-9]/i;
+    if (regex.test(stringNumero)) {
+        var imput = document.getElementById("numeroBin")
+
+        alert("Apenas Números binários");
+
+        imput.value = stringNumero.slice(0, -1);
+
+        bin2dec(imput.value);
+    }
+
 }
 
 function removerClass() {
@@ -31,8 +44,16 @@ function bin2dec(stringNumero) {
 
     for (var cont in stringNumero) {
         numeroBinario = parseInt(stringNumero[cont]);
-        expoente = parseInt(cont) + 1;
-        numeroDecimal = numeroDecimal + (numeroBinario * Math.pow(2, expoente));
+        if ((numeroBinario == 0) || (numeroBinario == 1)) {
+            expoente = parseInt(cont) + 1;
+            numeroDecimal = numeroDecimal + (numeroBinario * Math.pow(2, expoente));
+        } else {
+            var imput = document.getElementById("numeroBin")
+            alert("Apenas Números binários");
+            imput.value = stringNumero.slice(0, -1);
+
+            bin2dec(imput.value);
+        }
     }
 
     exibir.innerHTML = "Decimal: " + numeroDecimal;
